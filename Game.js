@@ -56,9 +56,10 @@ Game.prototype.inputDownListener = function(touchX, touchY) {
 
 Game.prototype.inputMoveListener = function(touchX, touchY) {
 	if(this.swiping){
-		if(!this.slideBar.updateX(touchX)){
-			this.inputUpListener(touchX, touchY);
-		}
+		// if(!this.slideBar.updateX(touchX)){
+		// 	this.inputUpListener(touchX, touchY);
+		// }
+		this.slideBar.updateX(touchX);
 	}
 }
 
