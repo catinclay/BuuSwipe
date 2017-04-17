@@ -37,7 +37,8 @@ Brick.prototype.drawToContext = function(theContext) {
 		this.hintLeft = this.fromLeft ? 0 : this.hintX;
 		this.hintRight = this.fromLeft ? this.hintX : this.canvasWidth;
 		theContext.fillStyle = "rgba(0,0,1,0.5)";
-		theContext.fillRect(this.hintLeft, this.y - this.hintHeight, this.hintRight - this.hintLeft, this.height);
+		theContext.fillRect(this.hintLeft, this.y - this.hintHeight, this.hintRight - this.hintLeft, this.hintHeight);
+		theContext.fillRect(this.hintX - this.headWidth/2, this.y - this.hintHeight, this.headWidth, this.hintHeight);
 	}
 
 	theContext.fillStyle = this.color;

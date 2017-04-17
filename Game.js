@@ -11,7 +11,8 @@ Game.prototype.init = function(canvasWidth, canvasHeight, imageManager, soundMan
 	// Game variables
 	this.slideBar = new SlideBar(canvasWidth, canvasHeight);
 	this.swiping = false;
-	this.brickSpeed = 4.5;
+	this.brickSpeed = canvasHeight/20;
+	this.accuracyCriteria = this.canvasWidth/12;
 	this.brickFromLeft = true;
 	this.bricks = [];
 	this.makeNewBrick();
@@ -24,7 +25,7 @@ Game.prototype.makeNewBrick = function() {
 
 Game.prototype.clear = function(x) {
 	var lastBrick = this.bricks[this.bricks.length-1];
-	if (Math.abs(lastBrick.getX() - x) <= 30) {
+	if (Math.abs(lastBrick.getX() - x) <= this.accuracyCriteria) {
 		this.bricks.pop();
 		if (this.bricks.length == 0) { this.makeNewBrick(); }
 		return true;
