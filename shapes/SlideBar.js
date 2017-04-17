@@ -19,15 +19,16 @@ SlideBar.prototype.refresh = function(reverse) {
 }
 
 SlideBar.prototype.updateX = function(x) {
-	if((this.fromLeft && x < this.x - this.headWidth/2)
-		|| (!this.fromLeft && x > this.x + this.headWidth/2)){
-		this.x = x;
-		return false;
-	}
-	if((this.fromLeft && x > this.x)
-		|| (!this.fromLeft && x < this.x)){
-		this.x = x;
-	}
+	// if((this.fromLeft && x < this.x - this.headWidth/2)
+	// 	|| (!this.fromLeft && x > this.x + this.headWidth/2)){
+	// 	this.x = x;
+	// 	return false;
+	// }
+	// if((this.fromLeft && x > this.x)
+	// 	|| (!this.fromLeft && x < this.x)){
+	// 	this.x = x;
+	// }
+	this.x = x;
 	return true;
 }
 
