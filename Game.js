@@ -23,10 +23,13 @@ Game.prototype.makeNewBrick = function() {
 }
 
 Game.prototype.clear = function(x) {
-	if (Math.abs(this.bricks[this.bricks.length-1].getX() - x) <= 30) {
+	var lastBrick = this.bricks[this.bricks.length-1];
+	if (Math.abs(lastBrick.getX() - x) <= 30) {
 		this.bricks.pop();
 		if (this.bricks.length == 0) { this.makeNewBrick(); }
 		return true;
+	} else {
+		lastBrick.presentHint(x);
 	}
 	return false;
 }

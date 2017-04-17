@@ -4,10 +4,13 @@ function Brick(canvasWidth, canvasHeight, fromLeft) {
 	this.fromLeft = fromLeft;
 	this.headWidth = canvasWidth/10;
 	this.height = canvasHeight/15;
+	this.hintHeight = canvasHeight/10;
 	this.color = "#FF0000";
 	this.headColor = "#770000";
 	this.y = -this.height;
 	this.x = this.canvasWidth * 0.2 + (Math.random() * this.canvasWidth) * 0.7;
+	this.showHint = false;
+	this.hintX = 0;
 }
 
 Brick.prototype.getX = function() {
@@ -18,16 +21,28 @@ Brick.prototype.getY = function() {
 	return this.y;
 }
 
-
 Brick.prototype.moveY = function(dy) {
 	this.y += dy;
 }
 
-Brick.prototype.drawToContext = function(theContext){
+Brick.prototype.presentHint = function(x) {
+	this.showHint = true;
+	this.hintX = x;
+}
+
+Brick.prototype.drawToContext = function(theContext) {
 	this.left = this.fromLeft ? 0 : this.x;
 	this.right = this.fromLeft ? this.x : this.canvasWidth;
+	if(this.showHint){
+		this.hintLeft = this.fromLeft ? 0 : this.hintX;
+		this.hintRight = this.fromLeft ? this.hintX : this.canvasWidth;
+		theContext.fillStyle = "rgba(0,0,1,0.5)";
+		theContext.fillRect(this.hintLeft, this.y - this.hintHeight, this.hintRight - this.hintLeft, this.height);
+	}
+
 	theContext.fillStyle = this.color;
 	theContext.fillRect(this.left, this.y - this.height, this.right - this.left, this.height);
 	theContext.fillStyle = this.headColor;
 	theContext.fillRect(this.x - this.headWidth/2, this.y - this.height, this.headWidth, this.height);
+
 }
