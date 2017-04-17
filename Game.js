@@ -11,7 +11,7 @@ Game.prototype.init = function(canvasWidth, canvasHeight, imageManager, soundMan
 	// Game variables
 	this.slideBar = new SlideBar(canvasWidth, canvasHeight);
 	this.swiping = false;
-	this.brickSpeed = canvasHeight/20;
+	this.brickSpeed = canvasHeight/200;
 	this.accuracyCriteria = this.canvasWidth/12;
 	this.brickFromLeft = true;
 	this.bricks = [];
