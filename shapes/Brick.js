@@ -8,7 +8,8 @@ function Brick(canvasWidth, canvasHeight, fromLeft) {
 	this.color = "#FF0000";
 	this.headColor = "#770000";
 	this.y = -this.height;
-	this.x = this.canvasWidth * 0.35 + (Math.random() * this.canvasWidth) * 0.6;
+	this.x = this.fromLeft ? this.canvasWidth * 0.35 + (Math.random() * this.canvasWidth) * 0.6
+			: this.canvasWidth - (this.canvasWidth * 0.35 + (Math.random() * this.canvasWidth) * 0.6);
 	this.showHint = false;
 	this.hintX = 0;
 }
