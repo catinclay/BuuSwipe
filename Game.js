@@ -89,8 +89,8 @@ Game.prototype.update = function() {
 	for(var i = this.bricks.length - 1; i >= 0; i--) {
 		if( i == this.bricks.length - 1 && this.bricks[i].getY() >= this.deadLine) {
 			this.bricks[i].setY(this.deadLine);
-		} else if (i < this.bricks.length - 1 && this.bricks[i].getY() + this.bricks[i].height >= this.bricks[i+1].getY()){
-			this.bricks[i].setY(this.bricks[i+1].getY() - this.bricks[i].height);
+		} else if (i < this.bricks.length - 1 && this.bricks[i].getY() + this.bricks[i+1].height >= this.bricks[i+1].getY()){
+			this.bricks[i].setY(this.bricks[i+1].getY() - this.bricks[i+1].height);
 			if(this.bricks[i].getY() <= 0){
 				this.gameOver();
 			}
