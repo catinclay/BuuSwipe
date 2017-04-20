@@ -25,5 +25,6 @@ GameOverScence.prototype.drawToContext = function(theContext) {
 		theContext.fillStyle = "black";
 		theContext.textAlign = "center";
 		theContext.fillText("Restart", this.canvasWidth/2 , this.canvasHeight/3);
+		theContext.fillText("version 1.0", this.canvasWidth/2 , this.canvasHeight/2);
 	}
 }
