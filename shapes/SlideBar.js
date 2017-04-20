@@ -39,10 +39,12 @@ SlideBar.prototype.getX = function() {
 }
 
 SlideBar.prototype.hitCheck = function(hitX,hitY) {
-	return((hitX > this.x - this.headWidth/0.25)
+	return(
+		(hitX > this.x - this.headWidth/0.25)
 		&&(hitX < this.x + this.headWidth/0.25)
-		&&(hitY > this.canvasHeight-this.height)
-		&&(hitY < this.canvasHeight));
+		// &&(hitY > this.canvasHeight-this.height)
+		// &&(hitY < this.canvasHeight)
+		);
 }
 
 SlideBar.prototype.drawToContext = function(theContext){
