@@ -43,8 +43,8 @@ SlideBar.prototype.getX = function() {
 }
 
 SlideBar.prototype.hitCheck = function(hitX,hitY) {
-	return((hitX > this.x - this.headWidth/0.5)
-		&&(hitX < this.x + this.headWidth/0.5)
+	return((hitX > this.x - this.headWidth/0.25)
+		&&(hitX < this.x + this.headWidth/0.25)
 		&&(hitY > this.canvasHeight-this.height)
 		&&(hitY < this.canvasHeight));
 }
