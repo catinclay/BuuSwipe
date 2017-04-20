@@ -2,7 +2,7 @@ function GameOverScence(canvasWidth, canvasHeight, slideBarHeight) {
 	this.canvasWidth = canvasWidth;
 	this.canvasHeight = canvasHeight;
 	this.displaying = false;
-	this.gameOverMask = "rgba(0,0,0,0.2)";
+	this.gameOverMask = "rgba(0,0,0,0.4)";
 }
 
 GameOverScence.prototype.show = function() {

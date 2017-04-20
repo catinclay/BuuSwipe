@@ -19,11 +19,11 @@ Game.prototype.createNewGame = function() {
 	this.deadLine = this.canvasHeight - this.slideBarHeight;
 	this.swiping = false;
 	this.brickHeight = this.canvasHeight/8;
-	this.brickSpeed = this.canvasHeight/100;
+	this.brickSpeed = this.canvasHeight/50;
 	this.accuracyCriteria = this.canvasWidth/12;
 	this.brickFromLeft = true;
 	this.bricks = [];
-	this.newBrickCountDown = 30;
+	this.newBrickCountDown = 25;
 	this.newBrickTimer = this.newBrickCountDown;
 	this.gamePlaying = true;
 }
