@@ -31,6 +31,6 @@ GameOverScence.prototype.drawToContext = function(theContext) {
 		theContext.font = "30px";
 		theContext.fillText("Restart?", this.canvasWidth/2 , this.canvasHeight/3);
 		theContext.font = "10px";
-		theContext.fillText("version 1.0", this.canvasWidth/2 , this.canvasHeight/2);
+		theContext.fillText("version 1.01", this.canvasWidth/2 , this.canvasHeight/2);
 	}
 }

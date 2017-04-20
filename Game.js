@@ -20,10 +20,10 @@ Game.prototype.createNewGame = function() {
 	this.oriScore = 0;
 
 	// Factors
-	this.brickHeightChangeFactor = 0.96;
-	this.brickSpeedChangeFactor = 1.05;
+	this.brickHeightChangeFactor = 0.97;
+	this.brickSpeedChangeFactor = 1.06;
 	this.newBrickCountDownChangeFactor = 0.95;
-	this.leveGap = 6;
+	this.levelGap = 5;
 
 	// Game variables
 	this.slideBarHeight = this.canvasHeight/8;
@@ -45,7 +45,7 @@ Game.prototype.createNewGame = function() {
 
 Game.prototype.addScore = function(x) {
 	this.score += x;
-	this.setDifficulty(this.score/this.leveGap + 1);
+	this.setDifficulty(this.score/this.levelGap + 1);
 }
 
 Game.prototype.difficultyAddOne = function() {
