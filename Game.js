@@ -20,11 +20,11 @@ Game.prototype.createNewGame = function() {
 	this.oriScore = 0;
 
 	// Factors
-	this.brickHeightChangeFactor = 0.95;
+	this.brickHeightChangeFactor = 0.96;
 	this.brickSpeedChangeFactor = 1.05;
 	this.newBrickCountDownChangeFactor = 0.95;
-	this.leveGap = 8;
-	
+	this.leveGap = 6;
+
 	// Game variables
 	this.slideBarHeight = this.canvasHeight/8;
 	this.slideBar = new SlideBar(this.canvasWidth, this.canvasHeight, this.slideBarHeight);
