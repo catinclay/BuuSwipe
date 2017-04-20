@@ -12,34 +12,74 @@ Game.prototype.init = function(canvasWidth, canvasHeight, imageManager, soundMan
 }
 
 Game.prototype.createNewGame = function() {
+	// Default Const Setting
+	this.oriBrickHeight = this.canvasHeight/8;
+	this.oriBrickSpeed = this.canvasHeight/120;
+	this.oriNewBrickCountDown = 25;
+	this.oriLevel = 1;
+	this.oriScore = 0;
+
+	// Factors
+	this.brickHeightChangeFactor = 0.95;
+	this.brickSpeedChangeFactor = 1.05;
+	this.newBrickCountDownChangeFactor = 0.95;
+	this.leveGap = 8;
+	
 	// Game variables
 	this.slideBarHeight = this.canvasHeight/8;
 	this.slideBar = new SlideBar(this.canvasWidth, this.canvasHeight, this.slideBarHeight);
 	this.gameOverScence = new GameOverScence(this.canvasWidth, this.canvasHeight);
 	this.deadLine = this.canvasHeight - this.slideBarHeight;
 	this.swiping = false;
-	this.brickHeight = this.canvasHeight/8;
-	this.brickSpeed = this.canvasHeight/50;
 	this.accuracyCriteria = this.canvasWidth/12;
 	this.brickFromLeft = true;
-	this.bricks = [];
-	this.newBrickCountDown = 25;
+
+	// Game variables
+	this.score = this.oriScore;
+	this.currentLevel = this.oriLevel;
+	this.setDifficulty(this.currentLevel);
 	this.newBrickTimer = this.newBrickCountDown;
+	this.bricks = [];
 	this.gamePlaying = true;
 }
 
+Game.prototype.addScore = function(x) {
+	this.score += x;
+	this.setDifficulty(this.score/this.leveGap + 1);
+}
+
+Game.prototype.difficultyAddOne = function() {
+	this.currentLevel += 1;
+	this.setDifficulty(currentLevel);
+}
+
+Game.prototype.setDifficulty = function(level) {
+	this.currentLevel = level;
+	this.brickHeight = this.oriBrickHeight * Math.pow(this.brickHeightChangeFactor, level);
+	this.brickSpeed = this.oriBrickSpeed * Math.pow(this.brickSpeedChangeFactor, level);
+	this.newBrickCountDown = this.oriNewBrickCountDown * Math.pow(this.newBrickCountDownChangeFactor, level);
+}
+
 Game.prototype.makeNewBrick = function() {
-	this.bricks.unshift(new Brick(this.canvasWidth, this.canvasHeight, this.brickFromLeft, this.brickHeight));
-	this.brickFromLeft = !this.brickFromLeft;
+	// if(this.bricks.length == 0 || this.bricks[0].getY() - this.brickHeight > 0){
+		this.bricks.unshift(new Brick(this.canvasWidth, this.canvasHeight, this.brickFromLeft, this.brickHeight));
+		this.brickFromLeft = !this.brickFromLeft;
+		this.newBrickTimer = 0;
+	// }
 }
 
 Game.prototype.clear = function(x) {
 	var lastBrick = this.bricks[this.bricks.length-1];
 	if (Math.abs(lastBrick.getX() - x) <= this.accuracyCriteria) {
 		this.bricks.pop();
+		this.addScore(1);
+		this.slideBar.updateScore(this.score);
 		return true;
 	} else {
 		lastBrick.presentHint(x);
+	}
+	if(this.bricks.length == 0) {
+		this.makeNewBrick();
 	}
 	return false;
 }
@@ -60,14 +100,13 @@ Game.prototype.update = function() {
 	}
 	this.newBrickTimer++;
 	if(this.newBrickTimer >= this.newBrickCountDown) {
-		this.newBrickTimer = 0;
 		this.makeNewBrick();
 	}
 }
 
 Game.prototype.gameOver = function() {
 	this.gamePlaying = false;
-	this.gameOverScence.show();
+	this.gameOverScence.show(this.score);
 	this.inputUpListener(0,0);
 }
 

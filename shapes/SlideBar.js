@@ -11,6 +11,7 @@ function SlideBar(canvasWidth, canvasHeight, slideBarHeight) {
 	this.left = 0;
 	this.right = 0;
 	this.showHint = false;
+	this.score = 0;
 	this.refresh(false);
 }
 
@@ -24,16 +25,11 @@ SlideBar.prototype.showHintOrNot = function(show) {
 	this.showHint = show;
 }
 
+SlideBar.prototype.updateScore = function(score) {
+	this.score = score;
+}
+
 SlideBar.prototype.updateX = function(x) {
-	// if((this.fromLeft && x < this.x - this.headWidth/2)
-	// 	|| (!this.fromLeft && x > this.x + this.headWidth/2)){
-	// 	this.x = x;
-	// 	return false;
-	// }
-	// if((this.fromLeft && x > this.x)
-	// 	|| (!this.fromLeft && x < this.x)){
-	// 	this.x = x;
-	// }
 	this.x = x;
 	return true;
 }
@@ -56,6 +52,12 @@ SlideBar.prototype.drawToContext = function(theContext){
 	theContext.fillRect(this.left, this.canvasHeight - this.height, this.right - this.left, this.height);
 	theContext.fillStyle = this.headColor;
 	theContext.fillRect(this.x - this.headWidth/2, this.canvasHeight - this.height, this.headWidth, this.height);
+
+	theContext.font = "40px Georgia";
+	theContext.fillStyle = "black";
+	theContext.textAlign = "center";
+	theContext.fillText(this.score, this.canvasWidth/2 , this.canvasHeight - this.height/2);
+
 	if(this.showHint){
 		this.hintLeft = this.fromLeft ? 0 : this.x - this.headWidth/2;
 		this.hintRight = this.fromLeft ? this.x + this.headWidth/2 : this.canvasWidth;
